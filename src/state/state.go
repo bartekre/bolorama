@@ -67,7 +67,7 @@ func InitContext(port int) *ServerContext {
 	debug := config.GetValueBool("debug")
 	return &ServerContext{
 		Games:                 make(map[bolo.GameId]bolo.GameInfo),
-		ProxyIpAddr:           util.GetOutboundIp(),
+		ProxyIpAddr:           config.GetProxyIp(),
 		ProxyPort:             port,
 		UdpConnection:         connectUdp(port),
 		PlayerPongChannel:     make(chan util.PlayerAddr),

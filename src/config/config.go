@@ -20,6 +20,7 @@ package config
 import (
 	"bufio"
 	"log"
+	"net"
 	"os"
 	"strconv"
 	"strings"
@@ -40,6 +41,7 @@ var valid []string = []string{
 	"player_timeout_seconds",
 	"tracker_debug_port",
 	"tracker_port",
+	"proxy_ip",
 }
 
 var defaults = map[string]string{
@@ -84,6 +86,22 @@ func GetValueBool(name string) bool {
 		log.Fatalln("Config property is not a boolean:", name)
 	}
 	return valueBool
+}
+
+func GetProxyIp() net.IP {
+	var proxyIp net.IP
+
+	load()
+	value, ok := configMap["proxy_ip"]
+    if ok {
+    	proxyIp = net.ParseIP(value).To4()
+        if proxyIp == nil {
+            log.Fatalln("Config property is not an IPv4 address: proxy_ip")
+        }
+    } else {
+        proxyIp = util.GetOutboundIp()
+    }
+    return proxyIp
 }
 
 func load() {

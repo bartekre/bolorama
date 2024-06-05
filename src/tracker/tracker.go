@@ -47,7 +47,7 @@ func Tracker(
 	hostname := config.GetValueString("hostname")
 	port := config.GetValueInt("tracker_port")
 	trackerDebugPort := config.GetValueInt("tracker_debug_port")
-	proxyIp := util.GetOutboundIp()
+	proxyIp := config.GetProxyIp()
 	wg := sync.WaitGroup{}
 
 	wg.Add(4)

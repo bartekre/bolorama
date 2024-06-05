@@ -51,6 +51,14 @@ Port number for tracker debug data. Type: integer. Default `50001`
 
 Port number for the tracker to listen on. Type: integer. Default: `50000`
 
+#### tracker_port
+
+Port number for the tracker to listen on. Type: integer. Default: `50000`
+
+#### proxy_ip
+
+If specified, this proxy address will be announced to clients, instead of automatically detected one. Useful when running behind a NAT. Type: string. No default.
+
 ## Tips
 
 ### Check Tracker From Modern Computer
